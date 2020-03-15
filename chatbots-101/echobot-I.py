@@ -100,6 +100,28 @@ def respond(message):
     return bot_message
 
 """
+ELIZA II
+"""
+"""
+The really clever thing about ELIZA is the way the program appears to understand what you told it by occasionally including phrases uttered by the user in its responses.
+
+In this exercise, you will match messages against some common patterns and extract phrases using re.search(). A dictionary called rules has already been defined, which matches the following patterns:
+
+
+"""
+"""
+A dictionary called rules has already been defined, which matches the following patterns:
+
+"do you think (.*)"
+"do you remember (.*)"
+"I want (.*)"
+"if (.*)"
+"""
+""" RULES dictionary
+('do you think (.*)', ['if {0}? Absolutely.', 'No chance'])
+('do you remember (.*)', ['Did you think I would forget {0}', "Why haven't you been able to forget {0}", 'What about {0}', 'Yes .. and?'])
+('I want (.*)', ['What would it mean if you got {0}', 'Why do you want {0}', "What's stopping you from getting {0}"])
+('if (.*)', ["Do you really think it's likely that {0}", 'Do you wish that {0}', 'What do you think about {0}', 'Really--if {0}'])
 """
 
 
@@ -124,7 +146,7 @@ def match_rule(rules, message):
 print(match_rule(rules, "do you remember your last birthday"))
 
 """
-ELIZA : PRONOUNS
+ELIZA III : PRONOUNS
 """
 # Define replace_pronouns()
 def replace_pronouns(message):
@@ -148,3 +170,30 @@ def replace_pronouns(message):
 print(replace_pronouns("my last birthday"))
 print(replace_pronouns("when you went to Florida"))
 print(replace_pronouns("I had my own castle"))
+
+
+"""
+ELIZA IV: PUTTING IT ALL TOGETHER
+"""
+"""
+Get a response and phrase by calling match_rule() with the rules dictionary and message.
+Check if the response is a template by seeing if it includes the string '{0}'. If it does:
+Use the replace_pronouns() function on phrase.
+Include the phrase by using .format() on response and overriding the value of response.
+"""
+# Define respond()
+def respond(message):
+    # Call match_rule
+    response, phrase = match_rule(rules, message)
+    if '{0}' in response:
+        # Replace the pronouns in the phrase
+        phrase = replace_pronouns(phrase)
+        # Include the phrase in the response
+        response = response.format(phrase)
+    return response
+
+# Send the messages
+send_message("do you remember your last birthday")
+send_message("do you think humans should be worried about AI")
+send_message("I want a robot friend")
+send_message("what if you could be anything you wanted")

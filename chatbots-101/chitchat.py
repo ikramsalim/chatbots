@@ -1,38 +1,4 @@
 """
-EchoBot just responds by replying with the same message it receives.
-"""
-bot_template = "BOT : {0}"
-user_template = "USER : {0}"
-
-# Define a function that responds to a user's message: respond
-def respond(message):
-    # Concatenate the user's message to the end of a standard bot respone
-    bot_message = "I can hear you! You said: " + message
-    # Return the result
-    return bot_message
-
-# Test function
-print(respond("hello!"))
-
-""" ECHOBOT-II"""
-
-# Create templates
-bot_template = "BOT : {0}"
-user_template = "USER : {0}"
-
-# Define a function that sends a message to the bot: send_message
-def send_message(message):
-    # Print user_template including the user_message
-    print(user_template.format(message))
-    # Get the bot's response to the message
-    response = respond(message)
-    # Print the bot template including the bot's response.
-    print(bot_template.format(response))
-
-# Send a message to the bot
-send_message("hello")
-
-""" CHITCHAT
 Chitchat
 Now you're going to leave the simple EchoBot behind and create a bot which can answer simple questions such as "What's your name?" and "What's today's weather?"
 
@@ -64,3 +30,10 @@ def respond(message):
         # Return the "default" message
         bot_message = responses["default"]
     return bot_message
+
+"""
+Hit 'Run Code' and call send_message() (which utilizes the new respond() function) in the IPython Shell with the following questions:
+"what's today's weather?"
+"what's your name?"
+"what's your favorite color?"
+"""
